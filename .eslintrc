@@ -1,0 +1,19 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "extends": ["airbnb-typescript", "airbnb/hooks"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "jest", "import"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {}
+}
