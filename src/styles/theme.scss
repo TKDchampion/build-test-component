@@ -1,0 +1,7 @@
+@import './variables.scss';
+
+// reboot
+body {
+  font-family: $defaultFontFamily;
+  background-color: $bodyColor;
+}
