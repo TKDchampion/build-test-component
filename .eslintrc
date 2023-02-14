@@ -9,7 +9,7 @@
     "project": "./tsconfig.json"
   },
   "extends": ["airbnb-typescript", "airbnb/hooks"],
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "jest", "import"],
+  "plugins": ["react", "react-hooks", "jest", "import"],
   "env": {
     "browser": true,
     "es6": true,
