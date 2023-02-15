@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { getWeeksInMonth } from './list-days';
 import './style.scss';
 import moment from 'moment';
 import classNames from 'classnames';
+import { Props } from './model';
+import { getWeeksInMonth } from './functions/list-days';
 
 const nowMonthYear = new (moment as any)().format('MMMM YYYY');
 const nowDay = new (moment as any)().format('DD');
 
-const CalendarCompanent: React.FC = () => {
+const CalendarCompanent: React.FC<Props> = ({ okAndCancel }) => {
   const [days, setDays] = useState<number[]>([]);
   const [monthYear, setMonthYear] = useState('');
   const [selectDate, setSelectDate] = useState({ monthYear: nowMonthYear, day: nowDay });
@@ -35,7 +36,7 @@ const CalendarCompanent: React.FC = () => {
 
   return (
     <div className="calendar-component-box">
-      <div className='calendar-txt'>Text</div>
+      <div className="calendar-txt">Text</div>
       <div className="calendar-title">{(moment as any)(monthYear).format('MMM, YYYY')}</div>
       <div className="d-flex justify-content-between mt-4 mb-4">
         <div className="calendar-arrow" onClick={prev}>
@@ -85,6 +86,7 @@ const CalendarCompanent: React.FC = () => {
                 });
                 return (
                   <div
+                    key={index}
                     className={style}
                     onClick={() => {
                       setMonthYear(`${monthYear.split(' ')[0]} ${year + index}`);
@@ -97,9 +99,22 @@ const CalendarCompanent: React.FC = () => {
           </div>
         )}
       </div>
-      <div className='d-flex mt-3 justify-content-end'>
-        <div className='calendar-button'>Cancel</div>
-        <div className='calendar-button ok'>Ok</div>
+      <div className="d-flex mt-3 justify-content-end">
+        <div className="calendar-button" onClick={() => okAndCancel && okAndCancel('cancel', '')}>
+          Cancel
+        </div>
+        <div
+          className="calendar-button ok"
+          onClick={() => {
+            const outputDate = (moment as any)(`${selectDate.monthYear} ${selectDate.day}`).format(
+              'MM/DD/YYYY',
+            );
+            if (okAndCancel) {
+              okAndCancel('ok', outputDate);
+            }
+          }}>
+          Ok
+        </div>
       </div>
     </div>
   );

@@ -2,64 +2,63 @@ import React, { useState } from 'react';
 import './style.scss';
 import checkedIcon from '../../assets/icons/checked.svg';
 import unCheckedIcon from '../../assets/icons/unChecked.svg';
-import { PanelInfo } from './model';
+import { PanelInfo, Props } from './model';
+import { verifyCharacter, verifyLowcase, verifyNumber, verifyUpcase } from './functions/verify';
+import classNames from 'classnames';
 
-const verifyUpcase = (str: string) => {
-  const re = /[A-Z]/g;
-  const found = str.match(re);
-
-  return !!found;
-};
-const verifyLowcase = (str: string) => {
-  const re = /[a-z]/g;
-  const found = str.match(re);
-
-  return !!found;
-};
-const verifyNumber = (str: string) => {
-  const re = /[0-9]/g;
-  const found = str.match(re);
-
-  return !!found;
-};
-const verifyCharacter = (str: string) => {
-  const re = /[!@#$%&]/g;
-  const found = str.match(re);
-
-  return !!found;
-};
-
-const InputComponent: React.FC = () => {
+const InputComponent: React.FC<Props> = ({
+  isPassword,
+  onChange,
+  onFocus,
+  onBlur,
+  calssName,
+  labelName,
+  value,
+}) => {
   const [panelData, setPanelData] = useState(PanelInfo);
   const verifyFun = (str: string) => {
-    const copyData = JSON.parse(JSON.stringify(panelData));
-    copyData[0].isChecked = verifyUpcase(str);
-    copyData[1].isChecked = verifyLowcase(str);
-    copyData[2].isChecked = verifyNumber(str);
-    copyData[3].isChecked = verifyCharacter(str);
-    copyData[4].isChecked = str.length > 8;
-    setPanelData(copyData);
+    if (isPassword) {
+      const copyData = JSON.parse(JSON.stringify(panelData));
+      copyData[0].isChecked = verifyUpcase(str);
+      copyData[1].isChecked = verifyLowcase(str);
+      copyData[2].isChecked = verifyNumber(str);
+      copyData[3].isChecked = verifyCharacter(str);
+      copyData[4].isChecked = str.length > 8;
+      setPanelData(copyData);
+    }
+    if (onChange) {
+      onChange(str);
+    }
   };
+  const style = classNames('input-box', calssName);
 
   return (
     <div className="input-component-box">
-      <div className="input-box">
-        <div className="input-box-label">Password</div>
-        <input type="password" onChange={(e) => verifyFun(e.target.value)} />
-        <div className="input-panel">
-          {panelData.map((item) => {
-            return (
-              <div className="input-panel-item" key={item.id}>
-                {item.isChecked ? (
-                  <img src={checkedIcon} alt="" />
-                ) : (
-                  <img src={unCheckedIcon} alt="" />
-                )}
-                <div className="input-panel-item-text">{item.text}</div>
-              </div>
-            );
-          })}
-        </div>
+      <div className={style}>
+        <div className="input-box-label">{isPassword ? 'Password' : labelName}</div>
+        <input
+          type={isPassword ? 'password' : 'text'}
+          onChange={(e) => verifyFun(e.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          value={value}
+        />
+        {isPassword && (
+          <div className="input-panel">
+            {panelData.map((item) => {
+              return (
+                <div className="input-panel-item" key={item.id}>
+                  {item.isChecked ? (
+                    <img src={checkedIcon} alt="" />
+                  ) : (
+                    <img src={unCheckedIcon} alt="" />
+                  )}
+                  <div className="input-panel-item-text">{item.text}</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
