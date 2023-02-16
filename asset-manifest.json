@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/build-test-component/static/css/main.a52fd934.css",
-    "main.js": "/build-test-component/static/js/main.5ac41a8a.js",
+    "main.js": "/build-test-component/static/js/main.26315e65.js",
     "static/css/238.ee43fc9f.chunk.css": "/build-test-component/static/css/238.ee43fc9f.chunk.css",
     "static/js/238.56a36deb.chunk.js": "/build-test-component/static/js/238.56a36deb.chunk.js",
     "static/js/787.f4282063.chunk.js": "/build-test-component/static/js/787.f4282063.chunk.js",
@@ -10,7 +10,7 @@
     "static/media/unChecked.svg": "/build-test-component/static/media/unChecked.103508fa01d34d2ec1c2cd50fd255e59.svg",
     "static/media/checked.svg": "/build-test-component/static/media/checked.aa3c943275cc41239ac301eb0e523529.svg",
     "main.a52fd934.css.map": "/build-test-component/static/css/main.a52fd934.css.map",
-    "main.5ac41a8a.js.map": "/build-test-component/static/js/main.5ac41a8a.js.map",
+    "main.26315e65.js.map": "/build-test-component/static/js/main.26315e65.js.map",
     "238.ee43fc9f.chunk.css.map": "/build-test-component/static/css/238.ee43fc9f.chunk.css.map",
     "238.56a36deb.chunk.js.map": "/build-test-component/static/js/238.56a36deb.chunk.js.map",
     "787.f4282063.chunk.js.map": "/build-test-component/static/js/787.f4282063.chunk.js.map",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.a52fd934.css",
-    "static/js/main.5ac41a8a.js"
+    "static/js/main.26315e65.js"
   ]
 }
